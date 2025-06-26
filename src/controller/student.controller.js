@@ -106,7 +106,27 @@ const deleteStudentRecord = async (req, res) => {
             message: "internal server error"
         })
     }
+};
+
+const getStudentsCount = async (req, res) => {
+    try {
+        const student = await Student.find();
+        if (student.length <= 0) {
+            return res.status(400).json({
+                message: "student record must be at least one"
+            })
+        }
+        return res.status(200).json({
+            message: `${student.length} records of students is successfully retrieved`,
+            count: student.length
+        })
+    } catch (err) {
+        console.error("Error retrieving student record count\n", err.message);
+        return res.status(500).json({
+            message: "internal server error"
+        })
+    }
 }
 
 
-module.exports = { createStudent, getAllStudents, updateStudentRecord, deleteStudentRecord };
+module.exports = { createStudent, getAllStudents, updateStudentRecord, deleteStudentRecord, getStudentsCount };
