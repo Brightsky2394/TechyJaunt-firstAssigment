@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(router);
 
-const port = 8090;
+const port = process.env.PORT || 'your-port-number';
 
 app.listen(port, () => {
     dbConnect();
