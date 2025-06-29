@@ -19,7 +19,7 @@ const createStudent = async (req, res) => {
         const newStudent = new Student({ firstName, lastName, email, age });
         await newStudent.save();
         return res.status(201).json({
-            message: "student created successfully",
+            message: `Newly created student document (with ${newStudent._id})`,
             newStudent
         })
     } catch (err) {
@@ -50,7 +50,7 @@ const getAllStudents = async (req, res) => {
         }
         const totalDocumentsCount = await Student.countDocuments();
         return res.status(200).json({
-            message: "students record retrieved successfully",
+            message: "Array of all student documents",
             pageNum,
             limitNum,
             totalDocumentsCount,
@@ -76,7 +76,7 @@ const updateStudentRecord = async (req, res) => {
     const newRecord = { firstName, lastName, email, age};
     const modifyStudent = await Student.findByIdAndUpdate(id, newRecord, { new: true } );
     return res.status(200).json({
-        message: "student record successfully updated",
+        message: "Updated student document",
         modifyStudent
     })
     } catch (err) {
@@ -97,7 +97,7 @@ const deleteStudentRecord = async (req, res) => {
         }
         const deleteStudent = await Student.findByIdAndDelete(id);
         return res.status(200).json({
-            message: "student deleted successfully",
+            message: `Success message / deleted student ${deleteStudent._id}`,
             deleteStudent
         })
     } catch (err) {
