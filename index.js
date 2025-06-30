@@ -1,11 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-dotenv.config();
 const dbConnect = require('./src/config/db');
 const router = require('./src/routes/student.route');
 const app = express();
 
+dotenv.config();
 
 app.use(express.json());
 app.use(morgan('dev'));
