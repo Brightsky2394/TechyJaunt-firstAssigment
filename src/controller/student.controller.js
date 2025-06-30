@@ -67,12 +67,12 @@ const getAllStudents = async (req, res) => {
 const updateStudentRecord = async (req, res) => {
     try {
         const { id } = req.params;
-    const { firstName, lastName, email, age } = req.body;
-    if (!id) {
-        return res.status(404).json({
-            message: "student record not found"
-        })
-    }
+        const { firstName, lastName, email, age } = req.body;
+        if (!id) {
+            return res.status(404).json({
+              message: "student record not found"
+          })
+      }
     const newRecord = { firstName, lastName, email, age};
     const modifyStudent = await Student.findByIdAndUpdate(id, newRecord, { new: true } );
     return res.status(200).json({
